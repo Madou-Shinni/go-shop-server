@@ -1,0 +1,49 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option go_package = "./user/proto;proto";
+
+service User {
+  rpc GetUserList(PageInfo) returns (UserListResponse) {} // 用户列表
+  rpc GetUserMobile(GetUserMobileRequest) returns (UserResponse) {} // 用户列表
+  rpc UpdateUser(UpdateUserRequest) returns (google.protobuf.Empty) {} // 更新用户
+}
+
+message PageInfo {
+  uint32 PageNum = 1;
+  uint32 PageSize = 2;
+}
+
+message UserListResponse {
+  uint32 count = 1;
+  repeated UserResponse userResponse = 2;
+}
+
+message GetUserMobileRequest {
+  string mobile = 1;
+}
+
+message UserResponse {
+  int32 id = 1;
+  string createdAt = 2;
+  string updatedAt = 3;
+  string deletedAt = 4;
+  string mobile = 5;
+  string password = 6;
+  string nickName = 7;
+  string birthday = 8;
+  string gender = 9;
+  int32 role = 10;
+}
+
+message UpdateUserRequest {
+  int32 id = 1;
+  string createdAt = 2;
+  string updatedAt = 3;
+  string deletedAt = 4;
+  string mobile = 5;
+  string password = 6;
+  string nickName = 7;
+  string birthday = 8;
+  string gender = 9;
+  int32 role = 10;
+}
